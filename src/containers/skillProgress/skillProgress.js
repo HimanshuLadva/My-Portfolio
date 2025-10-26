@@ -10,33 +10,24 @@ export default function StackProgress() {
     return (
       <Fade bottom duration={1000} distance="20px">
         <div className="skills-container">
-          <div className="skills-bar">
           <div className="skills-heading">Skills</div>
+          <div className="skills-bar">
             {techStack.experience.map((exp, i) => {
               const progressStyle = {
                 width: exp.progressPercentage
               };
               return (
-                <div key={i} className="skill">
-                  {exp.Stack}
-                  {/* <span className="skill-name"></span> */}
-                  {/* <div className="meter">
+                <div key={i} className="skill-card-progress">
+                  <div className="skill-header-progress">
+                    <span className="skill-name-progress">{exp.Stack}</span>
+                    <span className="skill-percentage-progress">{exp.progressPercentage}</span>
+                  </div>
+                  <div className="meter">
                     <span style={progressStyle}></span>
-                  </div> */}
+                  </div>
                 </div>
               );
             })}
-          </div>
-
-          <div className="skills-image">
-            {illustration.animated ? (
-              <DisplayLottie animationData={Build} />
-            ) : (
-              <img
-                alt="Skills"
-                src={require("../../assets/images/skill.svg")}
-              />
-            )}
           </div>
         </div>
       </Fade>
