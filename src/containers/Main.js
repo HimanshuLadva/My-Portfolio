@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Header from "../components/header/Header";
 import Greeting from "./greeting/Greeting";
+import Stats from "./stats/Stats";
+import Services from "./services/Services";
 import Skills from "./skills/Skills";
 import StackProgress from "./skillProgress/skillProgress";
 import WorkExperience from "./workExperience/WorkExperience";
@@ -53,6 +55,8 @@ const Main = () => {
           <>
             <Header />
             <Greeting />
+            <Stats />
+            <Services />
             <Skills />
             <StackProgress />
             <Education />
