@@ -16,11 +16,11 @@ export default function Services() {
       color: "#dd1b16"
     },
     {
-      title: "ERP Solutions",
-      icon: "fas fa-cogs",
+      title: "Full Stack Development",
+      icon: "fas fa-layer-group",
       description:
-        "Develop and optimize ERP modules for transport, accounting, and inventory management with seamless integration and performance.",
-      color: "#00d9ff"
+        "End-to-end development with Angular, TypeScript, .NET Web API, and SQL for complete web application solutions.",
+      color: "#6c63ff"
     },
     {
       title: "Performance Optimization",
@@ -30,11 +30,11 @@ export default function Services() {
       color: "#ffc107"
     },
     {
-      title: "Full Stack Development",
-      icon: "fas fa-layer-group",
+      title: "ERP Solutions",
+      icon: "fas fa-cogs",
       description:
-        "End-to-end development with Angular, TypeScript, .NET Web API, and SQL for complete web application solutions.",
-      color: "#6c63ff"
+        "Develop and optimize ERP modules for transport, accounting, and inventory management with seamless integration and performance.",
+      color: "#00d9ff"
     },
     {
       title: "Legacy Migration",

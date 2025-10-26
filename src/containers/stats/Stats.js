@@ -8,9 +8,9 @@ export default function Stats() {
 
   const statsData = [
     {
-      number: "30+",
-      title: "Projects Delivered",
-      icon: "fas fa-project-diagram"
+      number: "50+",
+      title: "Business Problems Solved",
+      icon: "fas fa-lightbulb"
     },
     {
       number: "2+",
