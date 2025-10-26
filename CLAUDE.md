@@ -56,12 +56,37 @@ Each container follows this structure:
 - **Features**: Gradient cards, hover animations, Font Awesome icons, grid layout
 - **Responsive**: 4 columns → 2 columns → 1 column on mobile
 - **Integration**: Positioned after Greeting section in Main.js
+- **Current Stats**: Business Problems Solved (50+), Years Experience (2+), Performance Boost (30%), Team Members Mentored (5+)
 
 #### 2. Services Section (src/containers/services/)
 - **Purpose**: Showcase services offered to clients with professional presentation
 - **Features**: Color-coded service cards, 3D rotation animations on hover, client-focused language
 - **Responsive**: 3 columns → 2 columns → 1 column on mobile
 - **Design Pattern**: Each service has custom color variable passed via CSS custom properties
+- **Services Order**: Angular Development, Full Stack Development, Performance Optimization, ERP Solutions, Legacy Migration, API Integration
+
+### Updated Sections (2025-10-26)
+
+#### 3. Software Skills Section (src/components/softwareSkills/)
+- **Design Pattern**: Grid-based card layout with glassmorphism effect
+- **Features**: 3D hover animations, icon rotation (360deg), purple gradient overlays, backdrop blur
+- **Layout**: Auto-fit grid with 110px min card width, responsive down to 80px on mobile
+- **Animation**: Icons scale and rotate on hover, cards lift with shadow effects
+- **Color Scheme**: Purple-blue gradient (#667eea → #764ba2) for hover states
+- **Structure**: Icon above text in vertical stack, not horizontal inline
+
+#### 4. Tech Stack Progress Section (src/containers/skillProgress/)
+- **Major Redesign**: Converted from simple pill badges to card-based progress bars
+- **Key Changes**:
+  - Removed illustration/Lottie animation from right side
+  - Full-width horizontal grid layout
+  - Skills heading is left-aligned, not centered
+- **Card Structure**: Skill name + percentage on header row, animated progress bar below
+- **Progress Bar Animation**: Fills from 0 to actual percentage on page load (1.5s duration)
+- **Hover Effects**: Cards lift, progress bars glow with purple shadow, gradient overlay appears
+- **Responsive Grid**: 280px min card width, auto-fit columns, single column on mobile
+- **Class Naming**: Uses `-progress` suffix (skill-card-progress, skill-header-progress, skill-name-progress, skill-percentage-progress)
+- **Layout Philosophy**: Horizontal arrangement prioritized over vertical with image
 
 ### Theme Management
 - **Default Mode**: Dark mode is enabled by default (isDark: true)
@@ -96,8 +121,12 @@ To add new sections to the portfolio:
 
 #### Social Media Links
 - Gmail link uses direct Gmail compose URL: `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`
+- WhatsApp link uses WhatsApp Web API: `https://wa.me/${phoneNumber}` (strip non-numeric characters)
 - Do NOT use `mailto:` links (doesn't work well for web-only email users)
 - Always include `target="_blank"` and `rel="noopener noreferrer"` for external links
+- **Icon Order**: GitHub, LinkedIn, Gmail, WhatsApp (positioned directly after Gmail)
+- **WhatsApp Integration**: Phone number format uses country code (+919510685398), icon appears beside every Gmail icon
+- **Color Variables**: All social media colors defined in _globalColor.scss (WhatsApp: #25d366)
 
 ### Achievement Section Guidelines
 - Only display real achievements and certifications
@@ -126,10 +155,21 @@ Use CSS Grid with auto-fit for flexible layouts:
 
 ### Card Hover Effects
 Standard hover animation pattern:
-- `transition: all 0.3s ease-in-out`
-- `transform: translateY(-10px)` on hover
-- Enhanced shadow on hover
+- `transition: all 0.3s ease` or `all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)` for bouncy effect
+- `transform: translateY(-5px)` to `translateY(-8px)` on hover
+- Enhanced shadow with purple glow on hover: `box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25)`
 - Optional: scale or rotate transforms
+- Glassmorphism pattern: `backdrop-filter: blur(10px)` with semi-transparent backgrounds
+- Gradient overlays using `::before` pseudo-element with opacity transitions
+
+### Progress Bar Pattern
+For animated progress bars (used in Tech Stack section):
+- Use CSS custom properties for dynamic width: `--proficiency: ${percentage}%`
+- Animate from 0 to actual value on page load using keyframes
+- Purple gradient fill: `linear-gradient(90deg, #667eea 0%, #764ba2 100%)`
+- Add glowing shadow on hover for interactive feel
+- Progress bars positioned below skill name and percentage header
+- Background should be semi-transparent: `rgba(255, 255, 255, 0.1)`
 
 ## File Naming Conventions
 - Components: PascalCase (Header.js, SocialMedia.js)
@@ -139,9 +179,11 @@ Standard hover animation pattern:
 - Configuration: lowercase (portfolio.js)
 
 ## Git/Version Control Notes
-- This is NOT currently a git repository
-- No .git directory exists
-- If initializing git, ensure .gitignore includes node_modules and build/
+- This IS a git repository (.git directory exists)
+- Current branch: main
+- Repository is clean with recent commits
+- Latest commits include portfolio sections and improvements
+- If adding new files, ensure .gitignore includes node_modules and build/
 
 ## Performance Considerations
 - Images should be optimized before adding to assets/
@@ -167,18 +209,20 @@ The start and build scripts run `fetch.js` first, which:
 ## Contact Information Integration
 Current contact details:
 - Email: himanshuladva0587@gmail.com
-- Phone: +91 95106 85398
+- Phone/WhatsApp: +91 95106 85398 (formatted as +919510685398 in config)
 - LinkedIn: https://www.linkedin.com/in/himanshu-ladva
 - GitHub: https://github.com/HimanshuLadva
+- WhatsApp: Integrated throughout portfolio via SocialMedia component
 
 ## Known Issues and TODOs
 - Achievement section currently disabled (needs real certifications)
 - ERP project URL incorrect (line 303 in portfolio.js - shows nextu.se instead of ecount.in)
 - Greeting.js references missing PDF file (Himanshu-Ladva.pdf) for resume download
-- TypeScript and JavaScript use same icon (should have distinct icons)
+- TypeScript and JavaScript use same icon in softwareSkills (should have distinct icons)
 - No testimonials section yet (recommended for client-facing portfolio)
 - No case studies section (would enhance project showcase)
 - Browser compatibility: Excludes IE11
+- Skills icons section kept as vertical cards with icons, separate from tech stack progress bars
 
 ## Design Philosophy
 - **Mobile-First**: Design for small screens, enhance for larger
@@ -187,11 +231,14 @@ Current contact details:
 - **Accessibility**: Maintain good contrast ratios, support keyboard navigation
 - **Interactivity**: Use subtle animations and hover effects without overwhelming
 - **Client-Focused**: Language emphasizes business value and ROI
+- **Glassmorphism**: Modern semi-transparent cards with backdrop blur for depth
+- **Purple Gradient Theme**: Consistent use of #667eea to #764ba2 gradient across interactive elements
+- **Progressive Enhancement**: Animations and effects enhance but don't block core functionality
 
 ## Future Enhancement Recommendations
 1. Add testimonials section for client feedback
 2. Create case studies for 1-2 major projects
-3. Add WhatsApp direct contact button
+3. ~~Add WhatsApp direct contact button~~ ✅ COMPLETED
 4. Implement typing animation in hero section
 5. Add project videos/GIFs for better visualization
 6. Enable GitHub integration (set openSource.display: true)
@@ -200,6 +247,7 @@ Current contact details:
 9. Add Google Analytics or Plausible for tracking
 10. Create sitemap.xml for SEO
 11. Add schema.org markup for better search visibility
+12. Add distinct TypeScript icon (currently uses same as JavaScript)
 
 ## Section Order (Current)
 1. Splash Screen (2 seconds, if enabled)
@@ -245,5 +293,60 @@ Current contact details:
 - Semantic HTML structure
 - ARIA labels where appropriate
 
+## Design System & Color Palette
+
+### Primary Brand Colors
+- **Purple Gradient**: #667eea (blue-purple) → #764ba2 (deep purple)
+- **Skills Color**: #645beb
+- **Button Colors**: #55198b (primary), #8c43ce (hover)
+
+### Social Media Brand Colors
+- GitHub: #333
+- LinkedIn: #0e76a8
+- Google/Gmail: #ea4335
+- WhatsApp: #25d366 (official WhatsApp green)
+- GitLab: #fca326
+- Twitter: #1da1f2
+- Medium: #000
+- Stack Overflow: #f48024
+- Instagram: #c13584
+- Kaggle: #20beff
+- Facebook: #3b5998
+
+### Component-Specific Patterns
+- **Glassmorphism Cards**: `background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)` with `backdrop-filter: blur(10px)`
+- **Border Styling**: `1px solid rgba(255, 255, 255, 0.1)` for light borders on dark backgrounds
+- **Shadow on Hover**: Multi-layer shadows with purple tint for interactive elements
+- **Border Radius**: 15-16px for cards, 50px for pills/badges, 10px for progress bars
+
+## Important Development Notes
+
+### Two Separate Skills Sections
+The portfolio has TWO distinct skills visualization approaches:
+1. **SoftwareSkill Component** (src/components/softwareSkills/): Icon-based grid cards with vertical layout (icon above text)
+2. **SkillProgress Component** (src/containers/skillProgress/): Horizontal progress bar cards with percentages
+
+These are intentionally separate and serve different purposes. Do not merge or confuse them.
+
+### Class Naming Suffixes
+To avoid conflicts between similar sections:
+- Skills icon cards use standard naming: `.skill-card`, `.skill-name`, etc.
+- Progress bar cards use `-progress` suffix: `.skill-card-progress`, `.skill-name-progress`, etc.
+
+### WhatsApp Integration Pattern
+When adding social media icons:
+1. Add property to `socialMediaLinks` object in portfolio.js with appropriate format
+2. Add icon to SocialMedia.js component with proper URL formatting
+3. Add brand color to `_globalColor.scss`
+4. Add CSS class and hover state to `SocialMedia.scss`
+5. Order matters: WhatsApp positioned directly after Gmail for logical grouping
+
 ## Last Updated
-2025-10-26 - Added Stats and Services sections, removed fake achievements, fixed skill percentages, set isHireable to true
+2025-10-26 - Major UI redesign session including:
+- Updated Stats section content (Business Problems Solved stat)
+- Redesigned Software Skills section with glassmorphism cards and 3D animations
+- Completely redesigned Tech Stack Progress section with animated progress bars
+- Removed illustration from Skills section for horizontal layout
+- Added WhatsApp integration across all social media sections
+- Swapped Services section positioning (Full Stack Development ↔ ERP Solutions)
+- Established purple gradient theme (#667eea → #764ba2) as primary interactive color

@@ -36,6 +36,7 @@ const socialMediaLinks = {
   github: "https://github.com/HimanshuLadva",
   linkedin: "https://www.linkedin.com/in/himanshu-ladva",
   gmail: "himanshuladva0587@gmail.com",
+  whatsapp: "+919510685398", // Your WhatsApp number with country code
   // gitlab: "https://gitlab.com/saadpasta",
   // facebook: "https://www.facebook.com/saad.pasta7",
   // medium: "https://medium.com/@saadpasta",
