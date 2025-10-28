@@ -35,55 +35,67 @@ export default function StartupProject() {
           <div className="projects-container">
             {bigProjects.projects.map((project, i) => {
               return (
-                <div
-                  key={i}
-                  className={
-                    isDark
-                      ? "dark-mode project-card project-card-dark"
-                      : "project-card project-card-light"
-                  }
-                >
-                  {project.image ? (
-                    <div className="project-image">
-                      <img
-                        src={project.image}
-                        alt={project.projectName}
-                        className="card-image"
-                      ></img>
-                    </div>
-                  ) : null}
-                  <div className="project-detail">
-                    <h5
-                      className={isDark ? "dark-mode card-title" : "card-title"}
-                    >
-                      {project.projectName}
-                    </h5>
-                    <p
-                      className={
-                        isDark ? "dark-mode card-subtitle" : "card-subtitle"
-                      }
-                    >
-                      {project.projectDesc}
-                    </p>
-                    {project.footerLink ? (
-                      <div className="project-card-footer">
-                        {project.footerLink.map((link, i) => {
-                          return (
-                            <span
-                              key={i}
-                              className={
-                                isDark ? "dark-mode project-tag" : "project-tag"
-                              }
-                              onClick={() => openUrlInNewTab(link.url)}
-                            >
-                              {link.name}
-                            </span>
-                          );
-                        })}
+                <Fade bottom duration={1000} distance="20px" key={i}>
+                  <div
+                    className={
+                      isDark
+                        ? "dark-mode project-card project-card-dark"
+                        : "project-card project-card-light"
+                    }
+                  >
+                    {project.image ? (
+                      <div className="project-image-wrapper">
+                        <div className="project-image">
+                          <img
+                            src={project.image}
+                            alt={project.projectName}
+                            className="card-image"
+                          ></img>
+                          <div className="image-overlay"></div>
+                        </div>
                       </div>
                     ) : null}
+                    <div className="project-detail">
+                      <div className="project-number">
+                        <span>0{i + 1}</span>
+                      </div>
+                      <h5
+                        className={
+                          isDark ? "dark-mode card-title" : "card-title"
+                        }
+                      >
+                        {project.projectName}
+                      </h5>
+                      <p
+                        className={
+                          isDark ? "dark-mode card-subtitle" : "card-subtitle"
+                        }
+                      >
+                        {project.projectDesc}
+                      </p>
+                      {project.footerLink ? (
+                        <div className="project-card-footer">
+                          {project.footerLink.map((link, i) => {
+                            return (
+                              <button
+                                key={i}
+                                className={
+                                  isDark
+                                    ? "dark-mode project-btn"
+                                    : "project-btn"
+                                }
+                                onClick={() => openUrlInNewTab(link.url)}
+                              >
+                                <span>{link.name}</span>
+                                <i className="fas fa-external-link-alt"></i>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                </div>
+                </Fade>
               );
             })}
           </div>
