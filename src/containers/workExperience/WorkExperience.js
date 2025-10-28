@@ -10,15 +10,22 @@ export default function WorkExperience() {
   if (workExperiences.display) {
     return (
       <div id="experience">
-        <Fade bottom duration={1000} distance="20px">
-          <div className="experience-container" id="workExperience">
-            <div>
+        <div className="experience-container" id="workExperience">
+          <div>
+            <Fade bottom duration={1000} distance="20px">
               <h1 className="experience-heading">Experiences</h1>
-              <div className="experience-cards-div">
-                {workExperiences.experience.map((card, i) => {
-                  return (
+            </Fade>
+            <div className="experience-cards-div">
+              {workExperiences.experience.map((card, i) => {
+                return (
+                  <Fade
+                    bottom
+                    duration={1000}
+                    distance="20px"
+                    key={i}
+                    delay={i * 100}
+                  >
                     <ExperienceCard
-                      key={i}
                       isDark={isDark}
                       cardInfo={{
                         company: card.company,
@@ -29,12 +36,12 @@ export default function WorkExperience() {
                         descBullets: card.descBullets
                       }}
                     />
-                  );
-                })}
-              </div>
+                  </Fade>
+                );
+              })}
             </div>
           </div>
-        </Fade>
+        </div>
       </div>
     );
   }
