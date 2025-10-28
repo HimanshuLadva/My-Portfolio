@@ -69,13 +69,13 @@
 .skill-name-progress {
   font-size: 16px;
   font-weight: 600;
-  color: $subTitle;
+  color: #ffffff;
   letter-spacing: 0.3px;
   transition: color 0.3s ease;
 }
 
 .skill-card-progress:hover .skill-name-progress {
-  color: $skillsColor;
+  color: #ffffff;
 }
 
 .skill-percentage-progress {
