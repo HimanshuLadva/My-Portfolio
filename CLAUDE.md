@@ -53,17 +53,29 @@ Each container follows this structure:
 
 #### 1. Stats Section (src/containers/stats/)
 - **Purpose**: Display key metrics and achievements in an eye-catching format
-- **Features**: Gradient cards, hover animations, Font Awesome icons, grid layout
+- **Features**: Individual color-coded cards, enhanced hover animations with icon scaling/rotation, Font Awesome icons
+- **Design Pattern**: Each stat card has unique color using CSS custom properties (--stat-color)
+- **Colors**: Yellow (#ffc107), Blue-Purple (#667eea), Coral (#ff6b6b), Teal (#4ecdc4)
+- **Animations**: 3D lift with scale on hover, icons scale (1.2x) and rotate (10deg), brightness filter effect
 - **Responsive**: 4 columns → 2 columns → 1 column on mobile
-- **Integration**: Positioned after Greeting section in Main.js
+- **Integration**: Positioned after Greeting section, before Services
 - **Current Stats**: Business Problems Solved (50+), Years Experience (2+), Performance Boost (30%), Team Members Mentored (5+)
 
 #### 2. Services Section (src/containers/services/)
 - **Purpose**: Showcase services offered to clients with professional presentation
-- **Features**: Color-coded service cards, 3D rotation animations on hover, client-focused language
+- **Total Services**: 8 service cards (Updated 2025-10-30)
+- **Features**: Individual color-coded service cards, 3D rotation animations on hover, client-focused language
 - **Responsive**: 3 columns → 2 columns → 1 column on mobile
-- **Design Pattern**: Each service has custom color variable passed via CSS custom properties
-- **Services Order**: Angular Development, Full Stack Development, Performance Optimization, ERP Solutions, Legacy Migration, API Integration
+- **Design Pattern**: Each service has custom color variable passed via CSS custom properties (--service-color)
+- **Services Order**:
+  1. Angular Development (red #dd1b16)
+  2. Web Development (green #4CAF50) - Added 2025-10-30
+  3. Full Stack Development (purple #6c63ff)
+  4. Customized Solutions (purple #9b59b6) - Added 2025-10-30
+  5. Performance Optimization (yellow #ffc107)
+  6. ERP Solutions (cyan #00d9ff)
+  7. Legacy Migration (coral #ff6b6b)
+  8. API Integration (teal #4ecdc4)
 
 ### Updated Sections (2025-10-26)
 
@@ -87,6 +99,19 @@ Each container follows this structure:
 - **Responsive Grid**: 280px min card width, auto-fit columns, single column on mobile
 - **Class Naming**: Uses `-progress` suffix (skill-card-progress, skill-header-progress, skill-name-progress, skill-percentage-progress)
 - **Layout Philosophy**: Horizontal arrangement prioritized over vertical with image
+
+### Removed Sections (2025-10-30)
+
+#### Skills Section (src/containers/skills/) - REMOVED
+- **Reason for Removal**: Redundant with Tech Stack Progress section
+- **Architectural Decision**:
+  - The "What I do" Skills section displayed tech stack icons with animation
+  - This information was duplicated in the Tech Stack Progress section which shows the same skills with percentages and progress bars
+  - Tech Stack Progress section is more informative (shows proficiency levels) and modern
+  - Removing this section creates cleaner portfolio flow and eliminates redundancy
+  - Better narrative: Stats → Services → Tech Stack Progress
+- **Implementation**: Component commented out in Main.js (line 60)
+- **Can Be Restored**: Simply uncomment the Skills component in Main.js if needed in future
 
 ### Theme Management
 - **Default Mode**: Dark mode is enabled by default (isDark: true)
@@ -222,7 +247,16 @@ Current contact details:
 - No testimonials section yet (recommended for client-facing portfolio)
 - No case studies section (would enhance project showcase)
 - Browser compatibility: Excludes IE11
-- Skills icons section kept as vertical cards with icons, separate from tech stack progress bars
+- ~~Skills icons section kept as vertical cards with icons, separate from tech stack progress bars~~ - RESOLVED: Skills section removed (2025-10-30)
+
+## What's New (2025-10-30)
+- ✅ Services section expanded to 8 services (added Web Development and Customized Solutions)
+- ✅ Stats section now uses individual color-coded cards with enhanced animations
+- ✅ Stats icons now scale and rotate on hover for better interactivity
+- ✅ Skills section removed to eliminate redundancy and streamline portfolio
+- ✅ Greeting section switched to codingPerson animation
+- ✅ Created new Color-Coded Card Pattern for multi-card sections
+- ✅ Portfolio flow optimized: Stats → Services → Tech Stack Progress
 
 ## What's New (2025-10-29)
 - ✅ Industry Projects section redesigned with modern interactive cards
@@ -262,14 +296,14 @@ Current contact details:
 1. Splash Screen (2 seconds, if enabled)
 2. Header (sticky navigation)
 3. Greeting (hero section with intro)
-4. Stats (metrics showcase) - NEW
-5. Services (what you offer) - NEW
-6. Skills (tech stack icons)
-7. Stack Progress (proficiency bars)
+4. Stats (metrics showcase with individual colors)
+5. Services (what you offer with 8 service cards)
+6. ~~Skills (tech stack icons)~~ - REMOVED (2025-10-30)
+7. Tech Stack Progress (proficiency bars - primary skills showcase)
 8. Education (academic background)
 9. Work Experience (job history)
 10. Projects (big projects showcase)
-11. Startup Projects
+11. Startup Projects (industry projects)
 12. Achievements (currently disabled)
 13. Blogs (Hashnode articles)
 14. Talks (currently disabled)
@@ -308,6 +342,22 @@ Current contact details:
 - **Purple Gradient**: #667eea (blue-purple) → #764ba2 (deep purple)
 - **Skills Color**: #645beb
 - **Button Colors**: #55198b (primary), #8c43ce (hover)
+
+### Stats Section Colors (Individual Cards)
+- **Yellow/Gold**: #ffc107 (Business Problems Solved)
+- **Blue-Purple**: #667eea (Years Experience)
+- **Coral/Red**: #ff6b6b (Performance Boost)
+- **Teal**: #4ecdc4 (Team Members Mentored)
+
+### Services Section Colors (Individual Cards)
+- **Red**: #dd1b16 (Angular Development)
+- **Green**: #4CAF50 (Web Development)
+- **Purple**: #6c63ff (Full Stack Development)
+- **Deep Purple**: #9b59b6 (Customized Solutions)
+- **Yellow**: #ffc107 (Performance Optimization)
+- **Cyan**: #00d9ff (ERP Solutions)
+- **Coral**: #ff6b6b (Legacy Migration)
+- **Teal**: #4ecdc4 (API Integration)
 
 ### Social Media Brand Colors
 - GitHub: #333
@@ -450,6 +500,18 @@ For badges and small interactive elements:
 - Scale effects (1.1x - 1.2x)
 - Purple glowing shadows
 
+### Color-Coded Card Pattern (2025-10-30)
+For sections with multiple cards that need individual color identities (Stats, Services):
+- **CSS Custom Properties**: Use --stat-color or --service-color for dynamic coloring
+- **Individual Colors**: Each card gets unique brand color passed via style prop
+- **Background Application**: Apply color to card background, not just accents
+- **Enhanced Hover**: Brightness filter (1.1) on hover to make colors pop
+- **Dark Mode Support**: Same colors used in dark mode with optional dark overlay
+- **Icon/Text Contrast**: Ensure white text/icons for readability on colored backgrounds
+- **Animation Integration**: Scale and translateY on hover with cubic-bezier easing
+- **Color Consistency**: Use established brand colors (yellow, purple, coral, teal, green, cyan, red)
+- **Pattern Usage**: Stats section (4 colors), Services section (8 colors)
+
 ### Image Overlay Pattern
 For card images with hover effects:
 - Overlay gradient: rgba(102, 126, 234, 0.3) → rgba(118, 75, 162, 0.3)
@@ -484,7 +546,18 @@ For bullet points and list items:
 - Alternative: Use gradient on hover states only, not default state
 
 ## Last Updated
-2025-10-29 - Major interactive redesigns:
+2025-10-30 - Portfolio refinement and color enhancement:
+- **Services Section Expansion**: Added 2 new services (Web Development, Customized Solutions) bringing total to 8 services
+- **Stats Section Color Enhancement**: Implemented individual color-coded cards matching Services section pattern
+- **Enhanced Animations**: Added icon scaling/rotation effects to Stats cards on hover
+- **Skills Section Removal**: Removed redundant "What I do" Skills section to streamline portfolio flow
+- **Architectural Decision**: Established Tech Stack Progress as primary skills showcase
+- **New Design Pattern**: Documented Color-Coded Card Pattern for multi-card sections
+- **Portfolio Flow Optimization**: Created cleaner narrative flow (Stats → Services → Tech Stack Progress)
+- **Service Order Update**: Customized Solutions positioned at 4th place for prominence
+- **Animation Mode**: Greeting section now uses codingPerson Lottie animation
+
+Previous Update (2025-10-29):
 - Completely redesigned Industry Projects section with transparent cards and 3D animations
 - Completely redesigned Experience section with glassmorphism, rotating logo rings, and interactive bullets
 - Established minimal spacing philosophy for compact layouts
