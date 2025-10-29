@@ -10,22 +10,26 @@ export default function Stats() {
     {
       number: "50+",
       title: "Business Problems Solved",
-      icon: "fas fa-lightbulb"
+      icon: "fas fa-lightbulb",
+      color: "#ffc107" // Yellow/Gold
     },
     {
       number: "2+",
       title: "Years Experience",
-      icon: "fas fa-briefcase"
+      icon: "fas fa-briefcase",
+      color: "#667eea" // Blue-Purple
     },
     {
       number: "30%",
       title: "Performance Boost",
-      icon: "fas fa-rocket"
+      icon: "fas fa-rocket",
+      color: "#ff6b6b" // Coral/Red
     },
     {
       number: "5+",
       title: "Team Members Mentored",
-      icon: "fas fa-users"
+      icon: "fas fa-users",
+      color: "#4ecdc4" // Teal
     }
   ];
 
@@ -37,6 +41,7 @@ export default function Stats() {
             <div
               key={index}
               className={isDark ? "stat-card dark-mode" : "stat-card"}
+              style={{"--stat-color": stat.color}}
             >
               <i className={`${stat.icon} stat-icon`}></i>
               <h1 className="stat-number">{stat.number}</h1>
