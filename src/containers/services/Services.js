@@ -16,11 +16,25 @@ export default function Services() {
       color: "#dd1b16"
     },
     {
+      title: "Web Development",
+      icon: "fas fa-laptop-code",
+      description:
+        "Create modern, responsive, and user-friendly websites with clean code, intuitive design, and seamless functionality across all devices.",
+      color: "#4CAF50"
+    },
+    {
       title: "Full Stack Development",
       icon: "fas fa-layer-group",
       description:
         "End-to-end development with Angular, TypeScript, .NET Web API, and SQL for complete web application solutions.",
       color: "#6c63ff"
+    },
+    {
+      title: "Customized Solutions",
+      icon: "fas fa-puzzle-piece",
+      description:
+        "Tailored software solutions designed to meet your unique business requirements, ensuring perfect alignment with your goals and processes.",
+      color: "#9b59b6"
     },
     {
       title: "Performance Optimization",
